@@ -17,10 +17,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img {
+/* img {
   max-width: 100%;
   display: block;
-}
+} */
 
 /* --- Hero Section --- */
 .hero {
@@ -161,21 +161,20 @@ h1 {
 
 /* --- Phone Block --- */ 
 .phone-box { 
-  position: relative; flex: 0 0 auto; 
-  /* width: clamp(320px, 100vw, 880px);  */
-  /* ✅ increased size */ 
-  transform: translateY(10px);
-/* background-color: #00ffe7; */
-width: 50%;
+  position: relative;
+  flex: 0 0 auto;
+  transform: translate(-100px, 10px); /* Moves phone slightly left & down */
+  display: flex;
 }
 
 .phone {
-  width: 100%;
+  width: 850px;
   height: 650px;
   /* height: auto; */
   transform: rotate(-3deg);
   transition: transform 0.3s ease;
   display: block;
+  
 }
 
 .phone:hover {
@@ -218,24 +217,89 @@ width: 50%;
   .text-block {
     width: 100%;
     flex: 0 0 auto;
-    padding-left: 28px; /* maintain some left padding on smaller screens */
+    padding-left: 28px;
     padding-right: 28px;
     text-align: left;
   }
 
+  /* ✅ Center the phone in the colored block */
   .phone-box {
     align-self: center;
-    width: clamp(260px, 60vw, 420px);
-    flex: 0 0 auto;
-    transform: translateY(0);
+    width: 100%; /* let it take full space of the color block */
+    display: flex;
+    justify-content: center; /* centers the phone horizontally */
+    align-items: center;     /* centers vertically if block has height */
+    transform: none;
+    /* background-color: #00ffe7; keep your turquoise color */
+  }
+
+  .phone {
+    display: block;
+    width: 340px;      /* responsive smaller width */
+    height: auto;
+    transform: rotate(-3deg);
+    transition: transform 0.3s ease;
+  }
+
+  .phone:hover {
+    transform: rotate(0deg) scale(1.02);
   }
 
   h1 {
     font-size: 42px;
   }
 
-  .subtitle { font-size: 20px; }
+  .subtitle {
+    font-size: 20px;
+  }
 }
+
+/* --- Mobile View --- */
+@media (max-width: 600px) {
+  .contact-btn {
+    display: none;
+  }
+
+  .hero {
+    padding: 20px;
+  }
+
+  .hero-content {
+    margin-top: 40px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .text-block {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  /* ✅ Keep phone perfectly centered even on very small screens */
+  .phone-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #00ffe7; */
+  }
+
+  .phone {
+    width: 500px; /* scales down slightly */
+    height: 500px;
+    transform: rotate(-3deg);
+  }
+}
+
+
+  h1 {
+    font-size: 42px;
+  }
+
+  .subtitle { font-size: 20px; }
+
 
 @media (max-width: 600px) {
   .contact-btn {
@@ -268,49 +332,31 @@ width: 50%;
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; }
 
-/* --- Billboard Section --- */
+/* --- Billboard Section (NEW) --- */
 .billboard-section {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-start; /* ✅ Move content to top */
-  justify-content: center;
+  background: #000;
   color: #fff;
-  padding-top: 10px; /* ✅ Adds space from top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 28px;
+  padding: 60px 20px 100px;
+  
 }
-
-.billboard-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-/* .billboard-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 2;
-} */
 
 .billboard-content {
-  position: relative;
-  z-index: 3;
   text-align: center;
-  padding: 0 24px;
-  max-width: 800px;
+  max-width: 880px;
+  padding: 0 16px;
 }
 
-/* --- Rest of your styles remain same --- */
 .billboard-content h2 {
   font-size: 48px;
   font-weight: 800;
-  margin-bottom: 16px;
+  margin: 0 0 14px;
   line-height: 1.2;
 }
 
@@ -323,7 +369,7 @@ button { font-family: inherit; }
 .billboard-content p {
   font-size: 22px;
   color: #fff;
-  margin-bottom: 36px;
+  margin: 0 0 28px;
   font-weight: 600;
 }
 
@@ -342,25 +388,31 @@ button { font-family: inherit; }
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .count-btn:hover {
   background: #00ffe7;
   color: #000;
   transform: translateY(-3px);
 }
 
-/* --- Responsive Billboard --- */
-@media (max-width: 768px) {
-  .billboard-content h2 {
-    font-size: 32px;
-  }
-  .billboard-content p {
-    font-size: 18px;
-  }
-  .billboard-section {
-    padding-top: 100px; /* slightly less padding on mobile */
-  }
+/* The banner image card */
+.billboard-visual img {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 22px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6);
+  display: block;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .billboard-section{
+    margin-top: 150px;
+  }
+  .billboard-section { padding: 40px 16px 70px; gap: 22px; }
+  .billboard-content h2 { font-size: 34px; }
+  .billboard-content p { font-size: 18px; }
+}
+
 
 
 /* --- Pricing Section --- */
